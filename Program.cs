@@ -1,6 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-
+﻿
 Random rnd = new Random();
 
 //
@@ -36,7 +34,7 @@ int valorActual;
 //Con 10000000 elementos tarda demasiado
 for (int i = 0; i < arreglo.Count; i++)
 {
-    for (int j = 0; j < arreglo.Count; j++)
+    for (int j = i; j < arreglo.Count; j++)
     {
         if (arreglo[j] > arreglo[i])
         {
@@ -57,14 +55,20 @@ foreach (var item in arreglo)
 
 //-----------------------------------------------------
 
-arreglo.ForEach(x =>
+for (int i = 0; i < arreglo.Count; i++)
 {
-    while (x % 2 == 1)
+    int numActual = arreglo[i];
+    while ((numActual > 0 && numActual % 2 == 1) || (numActual < 0 && numActual % 2 == -1))
     {
-        x = rnd.Next(-100000, 100001);
+        numActual = rnd.Next(-100000, 100001);
     }
-});
-Console.WriteLine(arreglo.Select(x => x));
+    arreglo[i] = numActual;
+}
+
+foreach (int i in arreglo)
+{
+    Console.WriteLine(i);
+}
 
 //----------------------------------------------------------------
 
